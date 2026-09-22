@@ -1,4 +1,4 @@
-class LoginPage {
+class LoginHRM {
     // Elements
     gotoPage() {
         return cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
@@ -53,4 +53,4 @@ class LoginPage {
         return cy.url({timeout: 30000}).should('include', '/dashboard');
     }
 }
-export default new LoginPage();
+export default new LoginHRM();
