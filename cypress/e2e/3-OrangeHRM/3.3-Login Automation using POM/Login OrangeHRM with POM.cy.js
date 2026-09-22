@@ -8,6 +8,7 @@ describe('Login OrangeHRM with POM', () => {
         // Visit OrangeHRM login page
         loginHRM.gotoPage();
         });
+        
     // Verify the url of the OrangeHRM login page
     it('LP-01 Verify the url of the OrangeHRM login page', () => {
         loginHRM.getLink();
