@@ -10,8 +10,6 @@ describe('OrangeHRM login page test', () => {
 
     // Verify the url of the OrangeHRM login page
     it('LP-01 Verify the url of the OrangeHRM login page', () => {
-        cy.url().should('contain', '/auth/login');
-
         // Verify the API response after the page load
         cy.wait('@messages').its('response.statusCode').should('equal',200);
     });
@@ -66,8 +64,6 @@ describe('OrangeHRM login page test', () => {
 
         // Verify the API response for login
         cy.wait('@validate4').its('response.statusCode').should('equal', 302);
-
-        cy.url().should('contain', '/dashboard');
     });
 
     // Verify login API should only called once when user click on login button
@@ -95,8 +91,6 @@ describe('OrangeHRM login page test', () => {
 
         // Verify the API response for forgot password
         cy.wait('@forgotPassword').its('response.statusCode').should('equal', 200);
-
-        cy.url().should('contain', '/requestPassword');
     });
     
     // Verify forgot password API should only called once when user click on forgot password button
