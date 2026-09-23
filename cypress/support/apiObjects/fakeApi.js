@@ -13,7 +13,7 @@ class fakeAPI {
         cy.request('GET',`${baseURL}/api/v1/categories`)
         .then((response) => {
             expect(response.status).to.eq(200)
-            expect(response.body).to.not.be.null
+            expect(response.body).to.be.an('array')
         });
     }    
     singleCategoryId(id){
@@ -41,7 +41,6 @@ class fakeAPI {
         cy.request({
             method: 'POST',
             url: `${baseURL}/api/v1/categories`,
-            headers: {'Content-Type': 'application/json'},
             body: categoryData
         })
         .then((response) => {
@@ -81,7 +80,6 @@ class fakeAPI {
         cy.request({
             method: 'PUT',
             url: `${baseURL}/api/v1/categories/${this.savedId}`,
-            headers: {'Content-Type': 'application/json'},
             body: changeCategory
         })
         .then((response) => {
@@ -120,7 +118,6 @@ class fakeAPI {
         cy.request({
             method: 'DELETE',
             url: `${baseURL}/api/v1/categories/${this.savedId}`,
-            headers: {'Content-Type': 'application/json'},
             body: deleteCategory
         })
         .then((response) => {
