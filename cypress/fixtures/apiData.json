@@ -1,0 +1,12 @@
+{
+    "id": 2,
+    "slug" : "electronics",
+    "newCategory" : {
+                "name": "Xbox 360", 
+                "image": "https://img.icons8.com/?size=100&id=tOVMB9FYs85v&format=png&color=000000"
+    },
+    "updateCategory" : {
+                "name": "Nintendo Switch SB",
+                "image": "https://img.icons8.com/?size=100&id=49777&format=png&color=000000"
+    }
+}
