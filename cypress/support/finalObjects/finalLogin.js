@@ -2,36 +2,38 @@ class finalLogin {
     // Elements
     gotoPage() {
         cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+        cy.get('h5').should('be.visible').and('contain.text','Login')
     }    
     getLink() {
-        cy.url({timeout: 30000}).should('include', '/auth/login')
+        cy.url().should('include', '/auth/login') 
     }
     getFavicon() {
-        cy.get('link[rel="icon"]',{timeout: 30000}).should('have.attr', 'href').and('include', 'favicon.ico')
+        cy.get('link[rel="icon"]').should('have.attr', 'href').and('include', 'favicon.ico')
     }
     getBranding() {
-        cy.get('.orangehrm-login-branding',{timeout: 30000}).should('be.visible')
+        cy.get('.orangehrm-login-branding').should('be.visible')
     }
     getLogo() {
-        cy.get('.orangehrm-login-logo',{timeout: 30000}).should('be.visible')
+        cy.get('.orangehrm-login-logo').should('be.visible')
     }
     clickForgotPasswordButton() {
-        cy.get('.orangehrm-login-forgot-header',{timeout: 30000}).should('be.visible').click()
+        cy.get('.orangehrm-login-forgot-header').should('be.visible').click()
     }
     getForgotPasswordLink() {
-        cy.url({timeout: 30000}).should('contain', '/requestPassword')
+        cy.get('h6').should('be.visible').and('contain.text','Reset Password')
+        cy.url().should('contain', '/requestPassword')
     }
     getUsername(username) {
-        cy.get('input[name="username"]',{timeout: 30000}).type(username)
+        cy.get('input[name="username"]').type(username)
     }
     getPassword(password) {
-        cy.get('input[name="password"]',{timeout: 30000}).type(password)
+        cy.get('input[name="password"]').type(password)
     }
     clickLoginButton() {
-        cy.get('button[type="submit"]',{timeout: 30000}).click()
+        cy.get('button[type="submit"]').click()
     }
     getUsernameErrorMessage() {
-        cy.get('.oxd-input-group',{timeout: 30000})
+        cy.get('.oxd-input-group',{timeout: 5000})
             .contains('Username')
             .parents('.oxd-input-group')
             .find('.oxd-input-field-error-message')
@@ -39,7 +41,7 @@ class finalLogin {
             .and('have.text', 'Required')
     }
     getPasswordErrorMessage() {
-        cy.get('.oxd-input-group',{timeout: 30000})
+        cy.get('.oxd-input-group',{timeout: 5000})
             .contains('Password')
             .parents('.oxd-input-group')
             .find('.oxd-input-field-error-message')
@@ -47,10 +49,11 @@ class finalLogin {
             .and('have.text', 'Required')
     }
     getInvalidCredentialsErrorMessage() {
-        cy.get('.oxd-alert-content',{timeout: 30000}).should('be.visible').and('have.text', 'Invalid credentials')
+        cy.get('.oxd-alert-content',{timeout: 5000}).should('be.visible').and('have.text', 'Invalid credentials')
     }
     getDashboardUrl() {
-        cy.url({timeout: 30000}).should('include', '/dashboard')
+        cy.get('h6').should('be.visible').and('contain.text','Dashboard')
+        cy.url().should('include', '/dashboard')
     }
 
     // API intercepts & verify

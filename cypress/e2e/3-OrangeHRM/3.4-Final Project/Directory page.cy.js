@@ -17,32 +17,31 @@ describe('Directory page automation using POM and assertion', () => {
     // Verify directory landing page
     it('DC-01 Verify directory landing page', () => {
         finalDirectory.verifyInterceptDirectoryPage();
-        finalDirectory.verifyDirectoryUrl();
-        finalDirectory.verifyDirectoryMenu();
+        finalDirectory.verifyDirectoryMenuandURL();
         finalDirectory.verfiyDirectorySidePanel();
     })
 
     // Search existing employee using employee first name
     it('DC-02 Search existing employee using employee first name', () => {
         finalDirectory.interceptEmployeeName();
-        finalDirectory.searchEmployeebyFirstName(finalData.employeeFirstName);
-        finalDirectory.verifyInterceptEmployeeName();
+        finalDirectory.searchEmployeebyName(finalData.employeeFirstName);
+        finalDirectory.verifyInterceptEmployeeSearchbyName();
         finalDirectory.verifyEmployeebyName(finalData.employeeFirstName);        
     })
 
     // Search existing employee using employee middle name
     it('DC-03 Search existing employee using employee middle name', () => {
         finalDirectory.interceptEmployeeName();
-        finalDirectory.searchEmployeebyMiddleName(finalData.employeeMiddleName);
-        finalDirectory.verifyInterceptEmployeeName();
+        finalDirectory.searchEmployeebyName(finalData.employeeMiddleName);
+        finalDirectory.verifyInterceptEmployeeSearchbyName();
         finalDirectory.verifyEmployeebyName(finalData.employeeMiddleName);
     })
 
     // Search existing employee using employee last name
     it('DC-04 Search existing employee using employee last name', () => {
         finalDirectory.interceptEmployeeName();
-        finalDirectory.searchEmployeebyLastName(finalData.employeeLastName);
-        finalDirectory.verifyInterceptEmployeeName();
+        finalDirectory.searchEmployeebyName(finalData.employeeLastName);
+        finalDirectory.verifyInterceptEmployeeSearchbyName();
         finalDirectory.verifyEmployeebyName(finalData.employeeLastName);
     })
     
@@ -50,40 +49,40 @@ describe('Directory page automation using POM and assertion', () => {
     it('DC-05 Search non-registered employee', () => {
         finalDirectory.interceptEmployeeName();
         finalDirectory.searchInvalidEmpoyeebyName(finalData.nonRegisteredEmployeeName);
-        finalDirectory.verifyInterceptEmployeeName();
+        finalDirectory.verifyInterceptEmployeeSearchbyOthers();
         finalDirectory.verifyInvalidEmployee();
     })
 
     // Search job with active employee
     it('DC-06 Search job with active employee', () => {
         finalDirectory.interceptEmployeeName();
-        finalDirectory.searchActiveEmployeebyJob(finalData.activeEmployeeJob);
-        finalDirectory.verifyInterceptEmployeeName();
-        finalDirectory.verifyActiveEmployeebyJob(finalData.activeEmployeeJob);
+        finalDirectory.searchEmployeebyJob(finalData.activeEmployeeJob);
+        finalDirectory.verifyInterceptEmployeeSearchbyOthers();
+        finalDirectory.verifyEmployeebyJob(finalData.activeEmployeeJob);
     })
 
     // Search job without employee
     it('DC-07 Search job without employee', () => {
         finalDirectory.interceptEmployeeName();
-        finalDirectory.searchEmptyEmployeebyJob(finalData.emptyEmployeeJob);
-        finalDirectory.verifyInterceptEmployeeName();
-        finalDirectory.verifyEmptyEmployeebyJob(finalData.emptyEmployeeJob);
+        finalDirectory.searchEmployeebyJob(finalData.emptyEmployeeJob);
+        finalDirectory.verifyInterceptEmployeeSearchbyOthers();
+        finalDirectory.verifyEmptyEmployeebyJob();
     })
 
     // Search location with active employee
     it('DC-08 Search location with active employee', () => {
         finalDirectory.interceptEmployeeName();
-        finalDirectory.searchActiveEmployeebyLocation(finalData.activeEmployeeLocation);
-        finalDirectory.verifyInterceptEmployeeName();
-        finalDirectory.verifyActiveEmployeebyLocation(finalData.activeEmployeeLocation);
+        finalDirectory.searchEmployeebyLocation(finalData.activeEmployeeLocation);
+        finalDirectory.verifyInterceptEmployeeSearchbyOthers();
+        finalDirectory.verifyEmployeebyJob(finalData.activeEmployeeLocation);
     })
 
     // Search location with empty employee
     it('DC-09 Search location with empty employee', () => {
         finalDirectory.interceptEmployeeName();
-        finalDirectory.searchEmptyEmployeebyLocation(finalData.emptyEmployeeLocation);
-        finalDirectory.verifyInterceptEmployeeName();
-        finalDirectory.verifyEmptyEmployeebyLocation(finalData.emptyEmployeeLocation);
+        finalDirectory.searchEmployeebyLocation(finalData.emptyEmployeeLocation);
+        finalDirectory.verifyInterceptEmployeeSearchbyOthers();
+        finalDirectory.verifyEmptyEmployeebyLocation();
     })
 
     // Search specific employee by name, job title, and location
@@ -94,7 +93,7 @@ describe('Directory page automation using POM and assertion', () => {
             finalData.activeEmployeeJob,
             finalData.activeEmployeeLocation
         );
-        finalDirectory.verifyInterceptEmployeeName();
+        finalDirectory.verifyInterceptEmployeeSearchbyName();
         finalDirectory.verifyActiveEmployeebyNameJobandLocation(
             finalData.employeeFirstName,
             finalData.activeEmployeeJob,

@@ -2,86 +2,69 @@ class finalDashboard{
 
     // Elements
     gotoDirectory(){
-        cy.get('a[href*="/viewDirectory"]',{timeout:30000}).click()
+        cy.get('h6').should('be.visible').and('contains.text','Dashboard')
+        cy.get('a[href*="/viewDirectory"]').click()
     }
-    verifyDirectoryUrl(){
-        cy.url({timeout:30000}).should('include','/viewDirectory')
-    }
-    verifyDirectoryMenu(){
-        cy.get('h6',{timeout:30000}).should('be.visible').and('contains.text','Directory')
+    verifyDirectoryMenuandURL(){
+        cy.get('h6').should('be.visible').and('contains.text','Directory')
+        cy.url().should('include','/viewDirectory')
     }
     verfiyDirectorySidePanel(){
         cy.get('a[href*="/viewDirectory"]').should('be.visible')
     }
-    searchEmployeebyFirstName(employeeFirstName){
-        cy.get('input[placeholder="Type for hints..."]',{timeout:30000}).should('be.visible').type(employeeFirstName)
-        cy.get('.oxd-autocomplete-option',{timeout:30000}).contains(employeeFirstName,{timeout:30000}).click()
+    searchEmployeebyName(employeeName){
+        cy.get('input[placeholder="Type for hints..."]',).should('be.visible').type(employeeName)
+        cy.get('.oxd-autocomplete-option').should('be.visible').and('contain','Searching')
+        cy.get('.oxd-autocomplete-option',).should('not.contain','searching')
+        cy.get('.oxd-autocomplete-option',).contains(employeeName).click()
         cy.get('button[type="submit"]').click()
-    }
-    searchEmployeebyMiddleName(employeeMiddleName){
-        cy.get('input[placeholder="Type for hints..."]',{timeout:30000}).should('be.visible').type(employeeMiddleName)
-        cy.get('.oxd-autocomplete-option',{timeout:30000}).contains(employeeMiddleName,{timeout:30000}).click()
-        cy.get('button[type="submit"]').click()
-    }
-    searchEmployeebyLastName(employeeLastName){
-        cy.get('input[placeholder="Type for hints..."]',{timeout:30000}).should('be.visible').type(employeeLastName)
-        cy.get('.oxd-autocomplete-option',{timeout:30000}).contains(employeeLastName,{timeout:30000}).click()
-        cy.get('button[type="submit"]').click()
-    }    
+    } 
     verifyEmployeebyName(foundEmployee){
-        cy.get('.orangehrm-container',{timeout:30000}).should('be.visible').and('contain.text',foundEmployee)
+        cy.get('.orangehrm-container',).should('be.visible').and('contain.text',foundEmployee)
     }
     searchInvalidEmpoyeebyName(nonRegisteredEmployeeName){
-        cy.get('input[placeholder="Type for hints..."]',{timeout:30000}).should('be.visible').type(nonRegisteredEmployeeName)   
+        cy.get('input[placeholder="Type for hints..."]').should('be.visible').type(nonRegisteredEmployeeName)   
     }
     verifyInvalidEmployee(){
-        cy.get('.oxd-autocomplete-dropdown',{timeout:30000}).first().click();
-        cy.get('.oxd-input-field-error-message',{timeout:30000}).should('be.visible').contains('Invalid')
+        cy.get('.oxd-autocomplete-dropdown').first().click();
+        cy.get('.oxd-input-field-error-message').should('be.visible').contains('Invalid')
     }
-    searchActiveEmployeebyJob(activeEmployeeJob){
-        cy.get('.oxd-select-text--arrow',{timeout:300000}).eq(0).click()
-        cy.get('div[role="listbox"]',{timeout:300000}).contains(activeEmployeeJob,{timeout:300000}).click()
+    searchEmployeebyJob(employeebyJob){
+        cy.get('.oxd-select-text',).eq(0).should('be.visible').click()
+        cy.get('div[role="listbox"]').contains(employeebyJob).should('be.visible').click()
         cy.get('button[type="submit"]').click()
     }
-    verifyActiveEmployeebyJob(activeEmployeeJob){
-        cy.get('.orangehrm-container',{timeout:30000}).should('be.visible').and('contain.text',activeEmployeeJob)
-    }
-    searchEmptyEmployeebyJob(emptyEmployeeJob){
-        cy.get('.oxd-select-text--arrow',{timeout:300000}).eq(0).click()
-        cy.get('div[role="listbox"]',{timeout:300000}).contains(emptyEmployeeJob,{timeout:30000}).click()
-        cy.get('button[type="submit"]').click()
+    verifyEmployeebyJob(resultEmployeebyJob){
+        cy.get('.orangehrm-container').should('be.visible').and('contain.text',resultEmployeebyJob)
     }
     verifyEmptyEmployeebyJob(){
-        cy.get('span[class="oxd-text oxd-text--span"]',{timeout:30000}).should('be.visible').and('contain.text','No Records Found')
+        cy.get('span[class="oxd-text oxd-text--span"]').should('be.visible').and('contain.text','No Records Found')
     }
-    searchActiveEmployeebyLocation(activeEmployeeLocation){
-        cy.get('.oxd-select-text--arrow',{timeout:300000}).eq(1).click()
-        cy.get('div[role="listbox"]',{timeout:300000}).contains(activeEmployeeLocation,{timeout:30000}).click()
+    searchEmployeebyLocation(employeebyLocation){
+        cy.get('.oxd-select-text').eq(1).click()
+        cy.get('div[role="listbox"]').contains(employeebyLocation).should('be.visible').click()
         cy.get('button[type="submit"]').click()
     }
-    verifyActiveEmployeebyLocation(activeEmployeeLocation){
-        cy.get('.orangehrm-container',{timeout:30000}).should('be.visible').and('contain.text',activeEmployeeLocation)
-    }
-    searchEmptyEmployeebyLocation(emptyEmployeeLocation){
-        cy.get('.oxd-select-text--arrow',{timeout:300000}).eq(1).click()
-        cy.get('div[role="listbox"]',{timeout:300000}).contains(emptyEmployeeLocation,{timeout:30000}).click()
-        cy.get('button[type="submit"]').click()
+    verifyEmployeebyLocation(resultEmployeebyLocation){
+        cy.get('.orangehrm-container').should('be.visible').and('contain.text',resultEmployeebyLocation)
     }
     verifyEmptyEmployeebyLocation(){
-        cy.get('span[class="oxd-text oxd-text--span"]',{timeout:30000}).should('be.visible').and('contain.text','No Records Found')
+        cy.get('span[class="oxd-text oxd-text--span"]').should('be.visible').and('contain.text','No Records Found')
     }
-    searchActiveEmployeebyNameJobandLocation(employeeFirstName,activeEmployeeJob,activeEmployeeLocation){
+    searchActiveEmployeebyNameJobandLocation(employeeName,activeEmployeeJob,activeEmployeeLocation){
         // Search by name
-        cy.get('input[placeholder="Type for hints..."]',{timeout:30000}).should('be.visible').type(employeeFirstName)
-        cy.get('.oxd-autocomplete-option',{timeout:30000}).contains(employeeFirstName,{timeout:30000}).click()
+        cy.get('input[placeholder="Type for hints..."]',).should('be.visible').type(employeeName)
+        cy.get('.oxd-autocomplete-option').should('be.visible').and('contain','Searching')
+        cy.get('.oxd-autocomplete-option',).should('not.contain','searching')
+        cy.get('.oxd-autocomplete-option',).contains(employeeName).click()
         
         // Search by job title
-        cy.get('.oxd-select-text--arrow',{timeout:30000}).eq(0).click()
-        cy.get('div[role="listbox"]',{timeout:30000}).contains(activeEmployeeJob,{timeout:30000}).click()
+        cy.get('.oxd-select-text',).eq(0).should('be.visible').click()
+        cy.get('div[role="listbox"]').contains(activeEmployeeJob).click()
 
          // Search by location
-        cy.get('.oxd-select-text--arrow',{timeout:30000}).eq(1).click()
-        cy.get('div[role="listbox"]',{timeout:30000}).contains(activeEmployeeLocation,{timeout:30000}).click()
+        cy.get('.oxd-select-text').eq(1).click()
+        cy.get('div[role="listbox"]').contains(activeEmployeeLocation).click()
 
         // Search combination
         cy.get('button[type="submit"]').click() 
@@ -89,9 +72,9 @@ class finalDashboard{
     verifyActiveEmployeebyNameJobandLocation(foundEmployee,activeEmployeeJob,activeEmployeeLocation){
         
         // Verification combination
-        cy.get('.orangehrm-container',{timeout:30000}).should('be.visible').and('contain.text',foundEmployee)
-        cy.get('.orangehrm-container',{timeout:30000}).should('be.visible').and('contain.text',activeEmployeeJob)
-        cy.get('.orangehrm-container',{timeout:30000}).should('be.visible').and('contain.text',activeEmployeeLocation)
+        cy.get('.orangehrm-container').should('be.visible').and('contain.text',foundEmployee)
+        cy.get('.orangehrm-container').should('be.visible').and('contain.text',activeEmployeeJob)
+        cy.get('.orangehrm-container').should('be.visible').and('contain.text',activeEmployeeLocation)
     }
     
     // API intercepts & verify
@@ -100,11 +83,17 @@ class finalDashboard{
     }
     verifyInterceptDirectoryPage(){
         cy.wait('@viewDirectory').its('response.statusCode').should('equal',200)
-    }    
+    } 
     interceptEmployeeName(){
         cy.intercept('GET', '/web/index.php/api/v2/directory/employees*').as('employees')
     }
-    verifyInterceptEmployeeName(){
+    verifyInterceptEmployeeSearchbyName(){
+        cy.wait('@employees').its('response.statusCode').should('equal',200)
+        cy.get('@employees.all').then((requests) => {
+          expect(requests.length).to.eq(3)
+        })
+    }
+    verifyInterceptEmployeeSearchbyOthers(){
         cy.wait('@employees').its('response.statusCode').should('equal',200)
     }
 }
