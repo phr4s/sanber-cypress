@@ -11,8 +11,10 @@
   "emptyEmployeeJob": "Account Assistant",
   "activeEmployeeLocation": "New York Sales Office",
   "emptyEmployeeLocation": "Canadian Regional HQ",
-  "activeCandidatesJob": "Software Engineer",
-  "emptyCandidatesJob": "Account Assistant",
-  "acviteCandidatesVacancy": "Sales Representative",
-  "emptyCandidatesVacancy": "Junior Account Assistant"
+  "activeCandidatesJob": "QA Lead",
+  "emptyCandidatesJob": "Content Specialist",
+  "acviteCandidatesVacancy": "Senior QA Lead",
+  "emptyCandidatesVacancy": "test",
+  "activeCandidatesName": "Martine",
+  "nonCandidatesName": "Jamalaludiara"
 }

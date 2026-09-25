@@ -2,9 +2,9 @@ class finalLogin {
     // Elements
     gotoPage() {
         cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-        cy.get('h5').should('be.visible').and('contain.text','Login')
     }    
     getLink() {
+        cy.get('h5').should('be.visible').and('contain.text','Login')
         cy.url().should('include', '/auth/login') 
     }
     getFavicon() {
@@ -24,10 +24,10 @@ class finalLogin {
         cy.url().should('contain', '/requestPassword')
     }
     getUsername(username) {
-        cy.get('input[name="username"]').type(username)
+        cy.get('input[name="username"]').should('be.visible').type(username)
     }
     getPassword(password) {
-        cy.get('input[name="password"]').type(password)
+        cy.get('input[name="password"]').should('be.visible').type(password)
     }
     clickLoginButton() {
         cy.get('button[type="submit"]').click()

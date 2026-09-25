@@ -88,13 +88,13 @@ describe('Directory page automation using POM and assertion', () => {
     // Search specific employee by name, job title, and location
     it('DC-10 Search specific employee by name, job title, and location', () => {
         finalDirectory.interceptEmployeeName();
-        finalDirectory.searchActiveEmployeebyNameJobandLocation(
+        finalDirectory.searchEmployeebyNameJobandLocation(
             finalData.employeeFirstName,
             finalData.activeEmployeeJob,
             finalData.activeEmployeeLocation
         );
         finalDirectory.verifyInterceptEmployeeSearchbyName();
-        finalDirectory.verifyActiveEmployeebyNameJobandLocation(
+        finalDirectory.verifyEmployeebyNameJobandLocation(
             finalData.employeeFirstName,
             finalData.activeEmployeeJob,
             finalData.activeEmployeeLocation

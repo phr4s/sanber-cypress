@@ -15,7 +15,7 @@ class finalDashboard{
     searchEmployeebyName(employeeName,isExist = true){
         cy.get('input[placeholder="Type for hints..."]',).should('be.visible').type(employeeName)
         cy.get('.oxd-autocomplete-option').should('be.visible').and('contain','Searching')
-        cy.get('.oxd-autocomplete-option',).should('not.contain','searching')
+        cy.get('.oxd-autocomplete-option',).should('not.contain','Searching')
         if(isExist){
             cy.get('.oxd-autocomplete-option',).contains(employeeName).click()
         } else {
@@ -27,8 +27,8 @@ class finalDashboard{
         if(isEmpty){
             cy.get('.oxd-input-field-error-message').should('be.visible').contains('Invalid')
         } else {
-            cy.get('span[class="oxd-text oxd-text--span"]').should('be.visible').and('contain.text',"Records Found")
-            cy.get('.orangehrm-container',).should('be.visible').and('contain.text',foundEmployee)
+            cy.get('.orangehrm-horizontal-padding.orangehrm-vertical-padding').should('be.visible').and('contain.text','Record Found')
+            cy.get('.orangehrm-container').should('be.visible').and('contain.text',foundEmployee)
         }
     }
     searchEmployeebyJob(employeebyJob){
@@ -38,9 +38,9 @@ class finalDashboard{
     }
     verifyEmployeebyJob(isEmpty = false,resultEmployeebyJob){
         if (isEmpty) {
-            cy.get('span[class="oxd-text oxd-text--span"]').should('be.visible').and('contain.text','No Records Found')
+            cy.get('.orangehrm-horizontal-padding.orangehrm-vertical-padding').should('be.visible').and('contain.text','No Records Found')
         } else {
-            cy.get('span[class="oxd-text oxd-text--span"]').should('be.visible').and('contain.text',"Records Found")
+            cy.get('.orangehrm-horizontal-padding.orangehrm-vertical-padding').should('be.visible').and('contain.text','Record Found')
             cy.get('.orangehrm-container').should('be.visible').and('contain.text',resultEmployeebyJob)
         }
     }
@@ -51,13 +51,13 @@ class finalDashboard{
     }
     verifyEmployeebyLocation(isEmpty=false,resultEmployeebyLocation){
         if(isEmpty){
-            cy.get('span[class="oxd-text oxd-text--span"]').should('be.visible').and('contain.text','No Records Found')
+            cy.get('.orangehrm-horizontal-padding.orangehrm-vertical-padding').should('be.visible').and('contain.text','No Records Found')
         } else {
-            cy.get('span[class="oxd-text oxd-text--span"]').should('be.visible').and('contain.text','Records Found')
+            cy.get('.orangehrm-horizontal-padding.orangehrm-vertical-padding').should('be.visible').and('contain.text','Record Found')
             cy.get('.orangehrm-container').should('be.visible').and('contain.text',resultEmployeebyLocation)
         }
     }
-    searchActiveEmployeebyNameJobandLocation(employeeName,activeEmployeeJob,activeEmployeeLocation){
+    searchEmployeebyNameJobandLocation(employeeName,employeeJob,employeeLocation){
         // Search by name
         cy.get('input[placeholder="Type for hints..."]',).should('be.visible').type(employeeName)
         cy.get('.oxd-autocomplete-option').should('be.visible').and('contain','Searching')
@@ -66,21 +66,21 @@ class finalDashboard{
         
         // Search by job title
         cy.get('.oxd-select-text',).eq(0).should('be.visible').click()
-        cy.get('div[role="listbox"]').contains(activeEmployeeJob).click()
+        cy.get('div[role="listbox"]').contains(employeeJob).click()
 
          // Search by location
         cy.get('.oxd-select-text').eq(1).click()
-        cy.get('div[role="listbox"]').contains(activeEmployeeLocation).click()
+        cy.get('div[role="listbox"]').contains(employeeLocation).click()
 
         // Search combination
         cy.get('button[type="submit"]').click() 
     }
-    verifyActiveEmployeebyNameJobandLocation(foundEmployee,activeEmployeeJob,activeEmployeeLocation){
+    verifyEmployeebyNameJobandLocation(foundEmployee,employeeJob,employeeLocation){
         
         // Verification combination
         cy.get('.orangehrm-container').should('be.visible').and('contain.text',foundEmployee)
-        cy.get('.orangehrm-container').should('be.visible').and('contain.text',activeEmployeeJob)
-        cy.get('.orangehrm-container').should('be.visible').and('contain.text',activeEmployeeLocation)
+        cy.get('.orangehrm-container').should('be.visible').and('contain.text',employeeJob)
+        cy.get('.orangehrm-container').should('be.visible').and('contain.text',employeeLocation)
     }
     
     // API intercepts & verify
