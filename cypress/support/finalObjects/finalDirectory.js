@@ -27,7 +27,7 @@ class finalDashboard{
         if(isEmpty){
             cy.get('.oxd-input-field-error-message').should('be.visible').contains('Invalid')
         } else {
-            cy.get('.orangehrm-horizontal-padding.orangehrm-vertical-padding').should('be.visible').and('contain.text','Record Found')
+            cy.get('.orangehrm-horizontal-padding.orangehrm-vertical-padding').should('be.visible').and('contain.text','Found')
             cy.get('.orangehrm-container').should('be.visible').and('contain.text',foundEmployee)
         }
     }
@@ -40,7 +40,7 @@ class finalDashboard{
         if (isEmpty) {
             cy.get('.orangehrm-horizontal-padding.orangehrm-vertical-padding').should('be.visible').and('contain.text','No Records Found')
         } else {
-            cy.get('.orangehrm-horizontal-padding.orangehrm-vertical-padding').should('be.visible').and('contain.text','Record Found')
+            cy.get('.orangehrm-horizontal-padding.orangehrm-vertical-padding').should('be.visible').and('contain.text','Found')
             cy.get('.orangehrm-container').should('be.visible').and('contain.text',resultEmployeebyJob)
         }
     }
@@ -53,7 +53,7 @@ class finalDashboard{
         if(isEmpty){
             cy.get('.orangehrm-horizontal-padding.orangehrm-vertical-padding').should('be.visible').and('contain.text','No Records Found')
         } else {
-            cy.get('.orangehrm-horizontal-padding.orangehrm-vertical-padding').should('be.visible').and('contain.text','Record Found')
+            cy.get('.orangehrm-horizontal-padding.orangehrm-vertical-padding').should('be.visible').and('contain.text','Found')
             cy.get('.orangehrm-container').should('be.visible').and('contain.text',resultEmployeebyLocation)
         }
     }

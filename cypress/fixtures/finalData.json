@@ -8,13 +8,13 @@
   "employeeLastName": "Anderson",
   "nonRegisteredEmployeeName": "Mbohlah_4455",
   "activeEmployeeJob": "Chief Financial Officer",
-  "emptyEmployeeJob": "Account Assistant",
+  "emptyEmployeeJob": "Head of Support",
   "activeEmployeeLocation": "New York Sales Office",
   "emptyEmployeeLocation": "Canadian Regional HQ",
-  "activeCandidatesJob": "QA Lead",
+  "activeCandidatesJob": "Software Engineer",
   "emptyCandidatesJob": "Content Specialist",
-  "acviteCandidatesVacancy": "Senior QA Lead",
+  "acviteCandidatesVacancy": "Software Engineer",
   "emptyCandidatesVacancy": "test",
-  "activeCandidatesName": "Martine",
+  "activeCandidatesName": "Phil",
   "nonCandidatesName": "Jamalaludiara"
 }

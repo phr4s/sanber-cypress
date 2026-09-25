@@ -33,7 +33,7 @@ class finalLogin {
         cy.get('button[type="submit"]').click()
     }
     getUsernameErrorMessage() {
-        cy.get('.oxd-input-group',{timeout: 5000})
+        cy.get('.oxd-input-group')
             .contains('Username')
             .parents('.oxd-input-group')
             .find('.oxd-input-field-error-message')
@@ -41,7 +41,7 @@ class finalLogin {
             .and('have.text', 'Required')
     }
     getPasswordErrorMessage() {
-        cy.get('.oxd-input-group',{timeout: 5000})
+        cy.get('.oxd-input-group')
             .contains('Password')
             .parents('.oxd-input-group')
             .find('.oxd-input-field-error-message')
@@ -49,7 +49,7 @@ class finalLogin {
             .and('have.text', 'Required')
     }
     getInvalidCredentialsErrorMessage() {
-        cy.get('.oxd-alert-content',{timeout: 5000}).should('be.visible').and('have.text', 'Invalid credentials')
+        cy.get('.oxd-alert-content').should('be.visible').and('have.text', 'Invalid credentials')
     }
     getDashboardUrl() {
         cy.get('h6').should('be.visible').and('contain.text','Dashboard')

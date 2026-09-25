@@ -15,65 +15,65 @@ describe('Recruitment page automation using POM and assertion', () => {
     // Verify recruitment landing page
     it('RC-01 Verify recruitment landing page', () => {
         finalRecruitment.verifyInterceptRecruitmentPage();
-        finalRecruitment.verifyRecruitmentMenuandUrl();
+        finalRecruitment.verifyRecruitmentUrl();
     })
 
     // Search job with active candidates
     it('RC-02 Search job with active candidates', () => {
-        finalRecruitment.interceptCandidatesName();
+        finalRecruitment.interceptCandidates();
         finalRecruitment.searchCandidatesbyJob(finalData.activeCandidatesJob);
-        finalRecruitment.verifyInterceptCandidatesbyOther();
+        finalRecruitment.verifyInterceptCandidates();
         finalRecruitment.verifyCandidatesbyJob(false,finalData.activeCandidatesJob);
     })
 
     // Search job without candidates
     it('RC-03 Search job without candidates', () => {
-        finalRecruitment.interceptCandidatesName();
+        finalRecruitment.interceptCandidates();
         finalRecruitment.searchCandidatesbyJob(finalData.emptyCandidatesJob);
-        finalRecruitment.verifyInterceptCandidatesbyOther();
+        finalRecruitment.verifyInterceptCandidates();
         finalRecruitment.verifyCandidatesbyJob(true);
     })
 
     // Search vacancy with active candidates
     it('RC-04 Search vacancy with active candidates', () => {
-        finalRecruitment.interceptCandidatesName();
+        finalRecruitment.interceptCandidates();
         finalRecruitment.searchCandidatesbyVacancy(finalData.acviteCandidatesVacancy);
-        finalRecruitment.verifyInterceptCandidatesbyOther();
+        finalRecruitment.verifyInterceptCandidates();
         finalRecruitment.verifyCandidatesbyVacancy(false,finalData.acviteCandidatesVacancy);
     })
 
     // Search vacancy without candidates
     it('RC-05 Search vacancy without candidates', () => {
-        finalRecruitment.interceptCandidatesName();
+        finalRecruitment.interceptCandidates();
         finalRecruitment.searchCandidatesbyVacancy(finalData.emptyCandidatesVacancy);
-        finalRecruitment.verifyInterceptCandidatesbyOther();
+        finalRecruitment.verifyInterceptCandidates();
         finalRecruitment.verifyCandidatesbyVacancy(true);
     })
 
     // Search candidates by name
     it('RC-06 Search candidates by name', () => {
-        finalRecruitment.interceptCandidatesName();
+        finalRecruitment.interceptCandidates();
         finalRecruitment.searchCandidatesbyName(finalData.activeCandidatesName);
-        finalRecruitment.verifyInterceptCandidatesbyName();
+        finalRecruitment.verifyInterceptCandidates();
         finalRecruitment.verifyCandidatesbyName(false,finalData.activeCandidatesName)
     })
     // Search non-candidates by name
     it('RC-07 Search non-candidates by name', () => {
-        finalRecruitment.interceptCandidatesName();
+        finalRecruitment.interceptCandidates();
         finalRecruitment.searchCandidatesbyName(finalData.nonCandidatesName,false);
-        finalRecruitment.verifyInterceptCandidatesbyName();
+        finalRecruitment.verifyInterceptCandidates();
         finalRecruitment.verifyCandidatesbyName(true)
     })
 
     // Search specific candidates by job, vacancy, and name
     it('RC-08 Search specific candidates by job, vacancy, and name', () => {
-        finalRecruitment.interceptCandidatesName();
+        finalRecruitment.interceptCandidates();
         finalRecruitment.searchCandidatesbyNameJobandVacancy(
             finalData.activeCandidatesJob,
             finalData.acviteCandidatesVacancy,
             finalData.activeCandidatesName
         );
-        finalRecruitment.verifyInterceptCandidatesbyName;
+        finalRecruitment.verifyInterceptCandidates();
         finalRecruitment.verifyCandidatesbyNameJobandVacancy(
             finalData.activeCandidatesJob,
             finalData.acviteCandidatesVacancy,
