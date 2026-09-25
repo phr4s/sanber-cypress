@@ -12,50 +12,56 @@ class finalDashboard{
     verfiyDirectorySidePanel(){
         cy.get('a[href*="/viewDirectory"]').should('be.visible')
     }
-    searchEmployeebyName(employeeName){
+    searchEmployeebyName(employeeName,isExist = true){
         cy.get('input[placeholder="Type for hints..."]',).should('be.visible').type(employeeName)
         cy.get('.oxd-autocomplete-option').should('be.visible').and('contain','Searching')
         cy.get('.oxd-autocomplete-option',).should('not.contain','searching')
-        cy.get('.oxd-autocomplete-option',).contains(employeeName).click()
+        if(isExist){
+            cy.get('.oxd-autocomplete-option',).contains(employeeName).click()
+        } else {
+            cy.get('.oxd-autocomplete-option',).contains('No Records Found').click()
+        }
         cy.get('button[type="submit"]').click()
     } 
-    verifyEmployeebyName(foundEmployee){
-        cy.get('.orangehrm-container',).should('be.visible').and('contain.text',foundEmployee)
-    }
-    searchInvalidEmpoyeebyName(nonRegisteredEmployeeName){
-        cy.get('input[placeholder="Type for hints..."]').should('be.visible').type(nonRegisteredEmployeeName)   
-    }
-    verifyInvalidEmployee(){
-        cy.get('.oxd-autocomplete-dropdown').first().click();
-        cy.get('.oxd-input-field-error-message').should('be.visible').contains('Invalid')
+    verifyEmployeebyName(isEmpty = false,foundEmployee){
+        if(isEmpty){
+            cy.get('.oxd-input-field-error-message').should('be.visible').contains('Invalid')
+        } else {
+            cy.get('span[class="oxd-text oxd-text--span"]').should('be.visible').and('contain.text',"Records Found")
+            cy.get('.orangehrm-container',).should('be.visible').and('contain.text',foundEmployee)
+        }
     }
     searchEmployeebyJob(employeebyJob){
         cy.get('.oxd-select-text',).eq(0).should('be.visible').click()
         cy.get('div[role="listbox"]').contains(employeebyJob).should('be.visible').click()
         cy.get('button[type="submit"]').click()
     }
-    verifyEmployeebyJob(resultEmployeebyJob){
-        cy.get('.orangehrm-container').should('be.visible').and('contain.text',resultEmployeebyJob)
-    }
-    verifyEmptyEmployeebyJob(){
-        cy.get('span[class="oxd-text oxd-text--span"]').should('be.visible').and('contain.text','No Records Found')
+    verifyEmployeebyJob(isEmpty = false,resultEmployeebyJob){
+        if (isEmpty) {
+            cy.get('span[class="oxd-text oxd-text--span"]').should('be.visible').and('contain.text','No Records Found')
+        } else {
+            cy.get('span[class="oxd-text oxd-text--span"]').should('be.visible').and('contain.text',"Records Found")
+            cy.get('.orangehrm-container').should('be.visible').and('contain.text',resultEmployeebyJob)
+        }
     }
     searchEmployeebyLocation(employeebyLocation){
         cy.get('.oxd-select-text').eq(1).click()
         cy.get('div[role="listbox"]').contains(employeebyLocation).should('be.visible').click()
         cy.get('button[type="submit"]').click()
     }
-    verifyEmployeebyLocation(resultEmployeebyLocation){
-        cy.get('.orangehrm-container').should('be.visible').and('contain.text',resultEmployeebyLocation)
-    }
-    verifyEmptyEmployeebyLocation(){
-        cy.get('span[class="oxd-text oxd-text--span"]').should('be.visible').and('contain.text','No Records Found')
+    verifyEmployeebyLocation(isEmpty=false,resultEmployeebyLocation){
+        if(isEmpty){
+            cy.get('span[class="oxd-text oxd-text--span"]').should('be.visible').and('contain.text','No Records Found')
+        } else {
+            cy.get('span[class="oxd-text oxd-text--span"]').should('be.visible').and('contain.text','Records Found')
+            cy.get('.orangehrm-container').should('be.visible').and('contain.text',resultEmployeebyLocation)
+        }
     }
     searchActiveEmployeebyNameJobandLocation(employeeName,activeEmployeeJob,activeEmployeeLocation){
         // Search by name
         cy.get('input[placeholder="Type for hints..."]',).should('be.visible').type(employeeName)
         cy.get('.oxd-autocomplete-option').should('be.visible').and('contain','Searching')
-        cy.get('.oxd-autocomplete-option',).should('not.contain','searching')
+        cy.get('.oxd-autocomplete-option',).should('not.contain','Searching')
         cy.get('.oxd-autocomplete-option',).contains(employeeName).click()
         
         // Search by job title

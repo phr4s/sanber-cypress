@@ -1,4 +1,4 @@
-import finalLogin from '../../../support/finalObjects/finalLogin.js';
+import finalLogin from '../../../support/finalObjects/finalLogin.js'
 import finalData from '../../../fixtures/finalData.json'
 
 describe('Login page automation using POM and assertion', () => {
