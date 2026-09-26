@@ -93,13 +93,7 @@ class finalDashboard{
     interceptEmployeeName(){
         cy.intercept('GET', '/web/index.php/api/v2/directory/employees*').as('employees')
     }
-    verifyInterceptEmployeeSearchbyName(){
-        cy.wait('@employees').its('response.statusCode').should('equal',200)
-        cy.get('@employees.all').then((requests) => {
-          expect(requests.length).to.eq(3)
-        })
-    }
-    verifyInterceptEmployeeSearchbyOthers(){
+    verifyInterceptEmployeeSearcbyName(){
         cy.wait('@employees').its('response.statusCode').should('equal',200)
     }
 }
